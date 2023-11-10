@@ -7,8 +7,10 @@ from pathos.pools import ProcessPool
 from scipy import linalg, interpolate
 from sklearn import gaussian_process as gp
 import argparse
-from jax.experimental.stax import Dense, Gelu, Relu
-from jax.experimental import stax
+#from jax.experimental.stax import Dense, Gelu, Relu
+from jax.example_libraries.stax import Dense, Gelu, Relu
+#from jax.experimental import stax
+from jax.example_libraries import stax
 import os
 
 import timeit
