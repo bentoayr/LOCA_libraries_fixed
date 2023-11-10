@@ -15,7 +15,9 @@ import os
 
 import timeit
 
-from jax.experimental import optimizers
+#from jax.experimental import optimizers
+from jax.example_libraries import optimizers
+
 
 from absl import app
 import jax
