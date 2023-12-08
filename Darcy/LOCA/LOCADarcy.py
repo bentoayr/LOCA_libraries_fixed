@@ -124,8 +124,8 @@ class PositionalEncodingY:
 
     @partial(jit, static_argnums=(0,))
     def forward(self, x):
-        pex = np.zeros((x.shape[0], self.max_len, self.H))
-        pey = np.zeros((x.shape[0], self.max_len, self.H))
+        pex = jnp.zeros((x.shape[0], self.max_len, self.H))
+        pey = jnp.zeros((x.shape[0], self.max_len, self.H))
         T = jnp.take(self.Y, 0, axis=2)[:,:,None]
         X = jnp.take(self.Y, 1, axis=2)[:,:,None]
         positionT = jnp.tile(T,(1,1,self.H))
