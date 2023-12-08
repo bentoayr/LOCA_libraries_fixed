@@ -312,9 +312,11 @@ class LOCA:
         return s_pred
     
     def count_params(self):
-        params = self.get_params(self.opt_state)
-        params_flat, _ = ravel_pytree(params)
-        print("The number of model parameters is:",params_flat.shape[0])
+        #params = self.get_params(self.opt_state)
+        #params_flat, _ = ravel_pytree(params)
+        #print("The number of model parameters is:",params_flat.shape[0])
+        print("The number of model parameters is:???")
+        
 
 def predict_function(U_in, X_in, Y_in, P=128, m=100, P_test=1024,num_test=200, Nx=30, Ny=32,model=None,dy=2, training_batch_size=100,params= None, L=128, mode="train", X_sim=None, Y_sim=None, H=20, z= None, w=None):
     print("Predicting the solution for the full resolution")
