@@ -131,10 +131,17 @@ class PositionalEncodingY:
         positionT = jnp.tile(T,(1,1,self.H))
         positionX = jnp.tile(X,(1,1,self.H))
         div_term = 2**jnp.arange(0,int(self.H/2),1)*jnp.pi
-        pex = jax.ops.index_update(pex, jax.ops.index[:,:,0::2], jnp.cos(positionT[:,:,0::2] * div_term))
-        pex = jax.ops.index_update(pex, jax.ops.index[:,:,1::2], jnp.sin(positionT[:,:,1::2] * div_term))
-        pey = jax.ops.index_update(pey, jax.ops.index[:,:,0::2], jnp.cos(positionX[:,:,0::2] * div_term))
-        pey = jax.ops.index_update(pey, jax.ops.index[:,:,1::2], jnp.sin(positionX[:,:,1::2] * div_term))
+        
+        #pex = jax.ops.index_update(pex, jax.ops.index[:,:,0::2], jnp.cos(positionT[:,:,0::2] * div_term))
+        #pex = jax.ops.index_update(pex, jax.ops.index[:,:,1::2], jnp.sin(positionT[:,:,1::2] * div_term))
+        #pey = jax.ops.index_update(pey, jax.ops.index[:,:,0::2], jnp.cos(positionX[:,:,0::2] * div_term))
+        #pey = jax.ops.index_update(pey, jax.ops.index[:,:,1::2], jnp.sin(positionX[:,:,1::2] * div_term))
+
+        pex.at[jax.ops.index[:,:,0::2]].set(jnp.cos(positionT[:,:,0::2] * div_term)
+        pex.at[jax.ops.index[:,:,1::2]].set(jnp.sin(positionT[:,:,1::2] * div_term)
+        pey.at[jax.ops.index[:,:,0::2]].set(jnp.cos(positionX[:,:,0::2] * div_term)
+        pey.at[jax.ops.index[:,:,1::2]].set(jnp.sin(positionX[:,:,1::2] * div_term)
+        
         pos_embedding =  jnp.concatenate((pex,pey),axis=-1) # [[x,pex],
                                                             # [y,pey]]
         x =  jnp.concatenate([x, pos_embedding], -1)
