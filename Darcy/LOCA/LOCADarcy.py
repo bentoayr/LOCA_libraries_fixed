@@ -137,10 +137,10 @@ class PositionalEncodingY:
         #pey = jax.ops.index_update(pey, jax.ops.index[:,:,0::2], jnp.cos(positionX[:,:,0::2] * div_term))
         #pey = jax.ops.index_update(pey, jax.ops.index[:,:,1::2], jnp.sin(positionX[:,:,1::2] * div_term))
 
-        pex = pex.at[jax.ops.index[:,:,0::2]].set(jnp.cos(positionT[:,:,0::2] * div_term))
-        pex = pex.at[jax.ops.index[:,:,1::2]].set(jnp.sin(positionT[:,:,1::2] * div_term))
-        pey = pey.at[jax.ops.index[:,:,0::2]].set(jnp.cos(positionX[:,:,0::2] * div_term))
-        pey = pey.at[jax.ops.index[:,:,1::2]].set(jnp.sin(positionX[:,:,1::2] * div_term))
+        pex = pex.at[:,:,0::2].set(jnp.cos(positionT[:,:,0::2] * div_term))
+        pex = pex.at[:,:,1::2].set(jnp.sin(positionT[:,:,1::2] * div_term))
+        pey = pey.at[:,:,0::2].set(jnp.cos(positionX[:,:,0::2] * div_term))
+        pey = pey.at[:,:,1::2].set(jnp.sin(positionX[:,:,1::2] * div_term))
         
         pos_embedding =  jnp.concatenate((pex,pey),axis=-1) # [[x,pex],
                                                             # [y,pey]]
