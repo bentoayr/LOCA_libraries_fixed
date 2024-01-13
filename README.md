@@ -1,3 +1,7 @@
+The uncompressed data can be found here:
+
+https://drive.google.com/drive/u/0/folders/1NF7msSF1c8Kak523myRT1vhqn6yUb4A4
+
 # Learning Operators with Coupled Attention
 
 ![Fig2 resized](https://user-images.githubusercontent.com/24652388/182936051-613aaa15-e743-4d7c-9ff6-e2d4093750fd.png)
