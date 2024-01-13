@@ -85,8 +85,8 @@ class PositionalEncodingY:
         #self.pe = jax.ops.index_update(self.pe, jax.ops.index[:,:,0::2], jnp.cos(position[:,:,0::2] * div_term))
         #self.pe = jax.ops.index_update(self.pe, jax.ops.index[:,:,1::2], jnp.sin(position[:,:,1::2] * div_term))
 
-        self.pe = self.pe.at[jax.ops.index[:,:,0::2]].set(jnp.cos(position[:,:,0::2] * div_term))
-        self.pe = self.pe.at[jax.ops.index[:,:,1::2]].set(jnp.sin(position[:,:,1::2] * div_term))
+        self.pe = self.pe.at[:,:,0::2].set(jnp.cos(position[:,:,0::2] * div_term))
+        self.pe = self.pe.at[:,:,1::2].set(jnp.sin(position[:,:,1::2] * div_term))
         
         x =  jnp.concatenate([x, self.pe],axis=-1)
         return x
