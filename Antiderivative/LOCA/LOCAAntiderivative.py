@@ -3,7 +3,7 @@ import jax.numpy as jnp
 from jax.example_libraries.stax import Dense, Gelu
 from jax.example_libraries import stax
 from jax.example_libraries import optimizers
-from jax.example_libraries.ode import odeint
+from jax.experimental.ode import odeint
 from jax.config import config
 
 import timeit
