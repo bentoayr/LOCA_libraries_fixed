@@ -76,7 +76,8 @@ class PositionalEncodingY:
 
     @partial(jit, static_argnums=(0,))
     def forward(self, x):
-        self.pe = np.zeros((x.shape[0], self.max_len, self.H))
+        #self.pe = np.zeros((x.shape[0], self.max_len, self.H))
+        self.pe = jnp.zeros((x.shape[0], self.max_len, self.H))
         T = jnp.asarray(self.Y[:,:,0:1])
         position = jnp.tile(T,(1,1,self.H))
         div_term = 2**jnp.arange(0,int(self.H/2),1)*jnp.pi
